@@ -1,0 +1,98 @@
+$box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1) !important;
+
+body,
+.theme--light.application,
+.application {
+  font-family: CircularStd;
+  color: #354964 !important;
+  background: #fff !important;
+  a {
+    color: #354964;
+  }
+}
+.v-menu__content {
+  box-shadow: $box-shadow;
+}
+.text-primary {
+  color: #354964;
+  &-important {
+    color: #354964 !important;
+  }
+}
+.text-white {
+  color: #fff;
+}
+.box-shadow {
+  box-shadow: $box-shadow;
+}
+
+@function str-replace($string, $search, $replace: '') {
+  $string: inspect($string);
+  $index: str-index($string, $search);
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+  @return $string;
+}
+
+$i: 1;
+@while $i < 10 {
+  .font-size-#{str-replace($i, '.', '-')} {
+    font-size: #{$i}rem;
+  }
+  $i: $i + 0.1;
+}
+@for $i from 1 through 20 {
+  .rounded-#{$i} {
+    border-radius: #{$i}px !important;
+  }
+}
+
+.theme--light {
+  .v-btn--flat {
+    text-transform: capitalize;
+    &.v-btn--active {
+      &::before {
+        background: transparent;
+      }
+    }
+    .v-ripple__container {
+      display: none;
+    }
+    &:focus,
+    &:hover {
+      &::before {
+        background: transparent;
+      }
+    }
+  }
+  .v-content {
+    padding-top: 0 !important;
+    .main-content-container {
+      padding-top: 64px;
+    }
+  }
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.float-right {
+  float: right;
+}
+.float-left {
+  float: left;
+}
+.clearfix {
+  &::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: hidden;
+  }
+}
+.container {
+  @media only screen and (min-width: 1904px) {
+    max-width: 1520px !important;
+  }
+}
